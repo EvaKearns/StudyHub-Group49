@@ -1,13 +1,16 @@
 package com.example.studyhub
-
+// 1. login screen - has admin, saves users to a database
+// 2. Welcome screen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -17,31 +20,28 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
         setContent {
-            StudyHubTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+            UsernameInput()
+            PasswordInput()
         }
+
     }
 }
 
+
 @Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
+fun UsernameInput() {
+    TextField(
+        state = rememberTextFieldState(initialText = "Hello"),
+        label = { Text("Username") }
     )
 }
 
-@Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
-    StudyHubTheme {
-        Greeting("Android")
-    }
+fun PasswordInput() {
+    TextField(
+        state = rememberTextFieldState(initialText = "Hello"),
+        label = { Text("Password") }
+    )
 }
